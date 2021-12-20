@@ -1,6 +1,6 @@
 import { articles } from "../../../data";
 
-export default handler = ({ query: { id } }, res) => {
+export default function handler({ query: { id } }, res) {
   const filtered = articles.filter((article) => article.id === id);
 
   if (filtered.length > 0) {
@@ -10,4 +10,4 @@ export default handler = ({ query: { id } }, res) => {
       .status(404)
       .json({ message: `Article with the id of ${id} is not found` });
   }
-};
+}

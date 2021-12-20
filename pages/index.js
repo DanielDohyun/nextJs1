@@ -1,6 +1,6 @@
 //used when you want custom title, meta-tags, keywords, desc, etc
-import Head from "next/head";
 import ArticleList from "../components/ArticleList";
+import { server } from "../config";
 
 //lowercase for pages, and uppercase for components
 
@@ -9,17 +9,14 @@ export default function Home({ articles }) {
 
   return (
     <div>
-      <Head>
-        <title>My first NextJS app </title>
-        <meta name="keywords" content="NextJS" />
-      </Head>
       <ArticleList articles={articles} />
     </div>
   );
 }
 
 export const getStaticProps = async () => {
-  const res = await fetch(`/api/articles`);
+  console.log(server);
+  const res = await fetch(`${server}/api/articles`);
   const articles = await res.json();
 
   return {
